@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "eaea94cf-59cd-41ad-9a05-4f26bd85e1ac",
+		"name": "ПВ202_БуйвалоАнастасияАндреевна_ЛабораторнаяРабота_4_Задание3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29809870"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var response_JSON = pm.response.json()",
+							"var request_JSON = pm.request.url.query.toObject();",
+							"",
+							"pm.test(\"Test response age with request data\", () => {",
+							"    pm.expect(response_JSON.age).to.equal(parseInt(request_JSON.age));",
+							"})",
+							"",
+							"pm.test(\"Test response name with request data\", () => {",
+							"    pm.expect(response_JSON.name).to.equal(request_JSON.name);",
+							"})",
+							"",
+							"console.log(\"request salary =\", request_JSON.salary);",
+							"console.log(\"response salary =\", response_JSON.salary);",
+							"",
+							"console.log(\"salary[0] =\", response_JSON.salary[0])",
+							"console.log(\"salary[1] =\",response_JSON.salary[1])",
+							"console.log(\"salary[2] =\",response_JSON.salary[2])",
+							"",
+							"",
+							"pm.test(\"Test response salary[0]\", () => {",
+							"    pm.expect(parseInt(response_JSON.salary[0])).to.eql(parseInt(request_JSON.salary));",
+							"})",
+							"",
+							"pm.test(\"Test response salary[1]\", () => {",
+							"    pm.expect(parseInt(response_JSON.salary[1])).to.eql(parseInt(request_JSON.salary * 2));",
+							"})",
+							"",
+							"pm.test(\"Test response salary[2]\", () => {",
+							"    pm.expect(parseInt(response_JSON.salary[2])).to.eql(parseInt(request_JSON.salary * 3));",
+							"})",
+							"",
+							"pm.environment.set(\"name\", request_JSON.name)",
+							"pm.environment.set(\"age\", request_JSON.age)",
+							"for(let i = 0; i < 3; i++)",
+							"    console.log(response_JSON.salary[i]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://162.55.220.72:5005/object_info_4?name=Nastya&age=20&salary=5",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Nastya"
+						},
+						{
+							"key": "age",
+							"value": "20"
+						},
+						{
+							"key": "salary",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": "rrr",
+			"type": "string"
+		},
+		{
+			"key": "age",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "salary",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
